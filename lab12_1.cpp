@@ -17,3 +17,41 @@ int main(){
     cout << "\nMin = " << B[5];
     return 0;
 }
+
+void stat(const double data[],int num,double ans[]){
+    int i=0;
+    double sum=0;
+	double mean=0;
+    double SD,GM=1.00;
+    double harmonic;
+    double min= data[0];
+    double max=data[0];
+    while (i!=num){
+        sum+=data[i];
+        i++;
+    }
+    mean=sum/num;
+    ans[0]=mean;
+    for(int j=0;j<num;j++){
+        SD+= (data[j]-mean)*(data[j]-mean);
+    }
+    SD /=num;
+    ans[1]= sqrt(SD);
+
+    for (int k=0;k<num;k++){
+        GM*=data[k];
+    }
+    ans[2]= pow(GM,(double)1/num);
+
+    for (int l=0;l<num;l++){
+        harmonic += 1/data[l];
+    }
+    ans[3] =num/harmonic;
+
+    for (int m=0;m<num;m++){
+        if(min>data[m]) min =data[m];
+        if(max<data[m]) max =data[m];
+    }
+    ans[4] = max;
+    ans[5] =min;
+}
